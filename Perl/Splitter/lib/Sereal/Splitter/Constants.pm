@@ -1,10 +1,10 @@
-package Sereal::Merger::Constants;
+package Sereal::Splitter::Constants;
 use strict;
 use warnings;
 require Exporter;
 our @ISA= qw(Exporter);
 
-our $VERSION = '0.001'; # Don't forget to update the TestCompat set for testing against installed encoders!
+our $VERSION = '0.820';
 
 our (@EXPORT_OK, %DEFINE, %TAG_INFO_HASH, @TAG_INFO_ARRAY);
 

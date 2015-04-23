@@ -6,7 +6,7 @@
 #include "srl_common.h"
 #include "srl_merger.h"
 #include "srl_protocol.h"
-#include "../Encoder/srl_buffer.h"
+#include "srl_buffer.h"
 #include "strtable.h"
 
 typedef srl_merger_t * Sereal__Merger;
@@ -43,10 +43,11 @@ append_all(mrg, src)
     srl_merger_append_all(aTHX_ mrg, src);
 
 SV*
-finish(mrg)
+finish(mrg, user_header = NULL)
     srl_merger_t *mrg;
+    SV *user_header;
   CODE:
-    RETVAL = srl_merger_finish(aTHX_ mrg);
+    RETVAL = srl_merger_finish(aTHX_ mrg, user_header);
   OUTPUT: RETVAL
 
 UV
