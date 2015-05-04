@@ -133,8 +133,6 @@ SRL_STATIC_INLINE void srl_read_frozen_object(pTHX_ srl_decoder_t *dec, HV *clas
 /* FIXME unimplemented!!! */
 SRL_STATIC_INLINE SV *srl_read_extend(pTHX_ srl_decoder_t *dec, SV* into);
 
-#define srl_decode_single_value srl_read_single_value
-
 #define DEPTH_INCREMENT(dec) STMT_START {                                           \
     if (expect_false(++dec->recursion_depth > dec->max_recursion_depth)) {                        \
             SRL_RDR_ERRORf1(dec->pbuf, "Reached recursion limit (%"UVuf") during deserialization",     \
@@ -1562,6 +1560,12 @@ srl_read_copy(pTHX_ srl_decoder_t *dec, SV* into)
 /****************************************************************************
  * MAIN DISPATCH SUB - ALL ROADS LEAD HERE                                  *
  ****************************************************************************/
+
+void
+srl_decode_single_value(pTHX_ srl_decoder_t *dec, SV* into, SV** container)
+{
+    srl_read_single_value(aTHX_ dec, into, container);
+}
 
 void
 srl_read_single_value(pTHX_ srl_decoder_t *dec, SV* into, SV** container)
